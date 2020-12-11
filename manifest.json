@@ -9,10 +9,10 @@
   },
   "preferences": [
     {
-      "id": "demo_kw",
+      "id": "calculator_kw",
       "type": "keyword",
-      "name": "Demo",
-      "default_value": "dm"
+      "name": "Gnome Calculator",
+      "default_value": "c"
     },
     {
       "id": "item_name",
