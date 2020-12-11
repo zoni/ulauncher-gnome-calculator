@@ -23,20 +23,19 @@ class DemoExtension(Extension):
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
         query = event.get_argument()
-        items = []
         logger.info("preferences %s" % json.dumps(extension.preferences))
         item_name = subprocess.run(
             ["gnome-calculator", "-s", query], stdout=subprocess.PIPE, text=True
         ).stdout
         data = {"new_name": "%s was clicked" % item_name}
-        items.append(
+        items = [
             ExtensionResultItem(
                 icon="images/icon.svg",
                 name=item_name,
                 description="Item description",
                 on_enter=ExtensionCustomAction(data, keep_app_open=True),
             )
-        )
+        ]
 
         return RenderResultListAction(items)
 
