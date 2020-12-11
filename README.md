@@ -1,3 +1,5 @@
-# Demo Extension
+# Gnome Calculator
 
-<img aligh="center" src="http://i.imgur.com/NFFR1tm.png">
+Query results from Gnome calculator (must have gnome-calculator installed)
+
+<img aligh="center" src="images/screenshot.png">

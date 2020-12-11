@@ -12,7 +12,7 @@
       "id": "calculator_kw",
       "type": "keyword",
       "name": "Gnome Calculator",
-      "default_value": "c"
+      "default_value": "calc"
     }
   ]
 }
