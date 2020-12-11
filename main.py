@@ -9,6 +9,7 @@ from ulauncher.api.shared.action.RenderResultListAction import RenderResultListA
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
 from ulauncher.api.shared.action.CopyToClipboardAction import CopyToClipboardAction
+from ulauncher.api.shared.action.RunScriptAction import RunScriptAction
 import subprocess
 
 logger = logging.getLogger(__name__)
@@ -31,8 +32,9 @@ class KeywordQueryEventListener(EventListener):
             ExtensionResultItem(
                 icon="images/icon.svg",
                 name=result,
-                description="Enter to copy to the clipboard",
+                description="Enter to copy to the clipboard\nAlt-enter to open in calculator",
                 on_enter=CopyToClipboardAction(result),
+                on_alt_enter=RunScriptAction("gnome-calculator -e '%s'" % query),
             )
         ]
 
