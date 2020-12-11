@@ -3,7 +3,7 @@
   "name": "Gnome Calculator",
   "description": "Query results from Gnome calculator",
   "developer_name": "Doeke Buursma",
-  "icon": "images/icon.png",
+  "icon": "images/icon.svg",
   "options": {
     "query_debounce": 0.05
   },
