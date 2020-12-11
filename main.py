@@ -8,6 +8,7 @@ from ulauncher.api.shared.item.ExtensionResultItem import ExtensionResultItem
 from ulauncher.api.shared.action.RenderResultListAction import RenderResultListAction
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 from ulauncher.api.shared.action.HideWindowAction import HideWindowAction
+import subprocess
 
 logger = logging.getLogger(__name__)
 
@@ -21,19 +22,21 @@ class DemoExtension(Extension):
 
 class KeywordQueryEventListener(EventListener):
     def on_event(self, event, extension):
+        query = event.get_argument()
         items = []
         logger.info("preferences %s" % json.dumps(extension.preferences))
-        for i in range(5):
-            item_name = extension.preferences["item_name"]
-            data = {"new_name": "%s %s was clicked" % (item_name, i)}
-            items.append(
-                ExtensionResultItem(
-                    icon="images/icon.svg",
-                    name="%s %s" % (item_name, i),
-                    description="Item description %s" % i,
-                    on_enter=ExtensionCustomAction(data, keep_app_open=True),
-                )
+        item_name = subprocess.run(
+            ["gnome-calculator", "-s", query], stdout=subprocess.PIPE, text=True
+        ).stdout
+        data = {"new_name": "%s was clicked" % item_name}
+        items.append(
+            ExtensionResultItem(
+                icon="images/icon.svg",
+                name=item_name,
+                description="Item description",
+                on_enter=ExtensionCustomAction(data, keep_app_open=True),
             )
+        )
 
         return RenderResultListAction(items)
 
