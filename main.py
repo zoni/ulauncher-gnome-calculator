@@ -30,7 +30,7 @@ class KeywordQueryEventListener(EventListener):
                 icon="images/icon.svg",
                 name=result,
                 description="Enter to copy to the clipboard\nAlt-enter to open in calculator",
-                on_enter=CopyToClipboardAction(result),
+                on_enter=CopyToClipboardAction(result.rstrip("\n")),
                 on_alt_enter=RunScriptAction("gnome-calculator -e '%s'" % query),
             )
         ]
